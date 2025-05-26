@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CultureHub - Événements</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Styles pour les modals */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+        }
+
+        /* Style spécifique pour la modal de confirmation */
+        #confirmationModal .modal-content {
+            max-width: 400px; /* Plus petite pour la confirmation */
+            text-align: center;
+        }
+
+
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Animation spécifique pour l'onglet Événements */
+        .events-link-animation {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .events-link-animation:hover {
+            transform: scale(1.1); /* Exemple d'animation: agrandir au survol */
+        }
+
+        /* Animation lors de l'activation de la section Événements (si elle est affichée via JS) */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Appliquer l'animation uniquement si la section des événements est chargée dynamiquement */
+        body.events-page #events-section {
+            animation: fadeInScale 0.5s ease-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 events-page"> <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-purple-600">CultureHub</h1>
+                </div>
+
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent transition-all">Accueil</a>
+                        <a href="evenements.html"
+                            class="text-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-purple-600 events-link-animation">Événements</a>
+                        <a href="activites.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Activités</a>
+                        <a href="ressources.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Ressources</a>
+                        <a href="membres.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Membres</a>
+                        <a href="cotisations.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Cotisations</a>
+
+                        <div class="relative ml-3">
+                            <button id="user-menu-button"
+                                class="bg-purple-600 text-white p-2 rounded-full hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                onclick="toggleUserMenu()">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </button>
+                            <div id="user-dropdown"
+                                class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paramètres</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes
+                                    favoris</a>
+                                <hr class="my-1">
+                                <a href="#"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button"
+                        class="text-gray-700 hover:text-purple-600 focus:outline-none focus:text-purple-600"
+                        onclick="toggleMobileMenu()">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+                <a href="evenements.html"
+                    class="text-purple-600 block px-3 py-2 rounded-md text-base font-medium bg-purple-50">Événements</a>
+                <a href="activites.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Activités</a>
+                <a href="ressources.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Ressources</a>
+                <a href="membres.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Membres</a>
+                <a href="cotisations.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Cotisations</a>
+                <hr class="my-2">
+                <a href="#"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Profil</a>
+                <a href="#"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Paramètres</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <main class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+          <div class="floating-shape absolute top-20 left-10 w-16 h-16 bg-purple-500 rounded-full opacity-20 animate-bounce"></div>
+          <div class="floating-shape absolute top-32 right-20 w-12 h-12 bg-blue-400 rounded-full opacity-30 animate-pulse"></div>
+          <div class="floating-shape absolute bottom-20 left-1/4 w-20 h-20 bg-indigo-400 rounded-full opacity-25 animate-ping"></div>
+          <div class="floating-shape absolute bottom-32 right-1/3 w-8 h-8 bg-cyan-400 rounded-full opacity-40 animate-bounce"></div>
+        </div>
+      
+        <!-- Main content container -->
+        <div class="relative z-10 text-center max-w-4xl mx-auto">
+          <!-- Large 404 with glitch effect -->
+          <div class="relative mb-8">
+            <h1 class="text-9xl md:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 leading-none tracking-tight glitch-effect">
+              404
+            </h1>
+            <div class="absolute inset-0 text-9xl md:text-[12rem] font-black text-red-500 opacity-20 animate-pulse glitch-layer">
+              404
+            </div>
+          </div>
+      
+          <!-- Error message -->
+          <div class="mb-8 space-y-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in">
+              Oups ! Page introuvable
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed animate-fade-in-delay">
+              La page que vous recherchez semble avoir disparu dans les méandres du cyberespace. 
+              Elle a peut-être été déplacée, supprimée, ou n'a jamais existé.
+            </p>
+          </div>
+      
+          <!-- Interactive elements -->
+          <div class="mb-12 flex flex-col md:flex-row gap-4 justify-center items-center animate-slide-up">
+            <button onclick="window.history.back()" class="group bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+              <span class="flex items-center gap-2">
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Retour
+              </span>
+            </button>
+            
+            <button onclick="window.location.href='/'" class="group bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+              <span class="flex items-center gap-2">
+                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                Accueil
+              </span>
+            </button>
+          </div>
+      
+          <!-- Fun facts or suggestions -->
+          <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 max-w-md mx-auto animate-fade-in-delay-2">
+            <h3 class="text-lg font-semibold text-white mb-3">Le saviez-vous ?</h3>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              L'erreur 404 tire son nom du bureau 404 du CERN où était hébergé le premier serveur web. 
+              Quand une page n'était pas trouvée, on disait qu'elle était "Not Found in room 404" !
+            </p>
+          </div>
+        </div>
+      
+        <!-- CSS animations -->
+        <style>
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+      
+          @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+          }
+      
+          .animate-fade-in {
+            animation: fadeIn 1s ease-out 0.3s both;
+          }
+          
+          .animate-fade-in-delay {
+            animation: fadeIn 1s ease-out 0.6s both;
+          }
+          
+          .animate-fade-in-delay-2 {
+            animation: fadeIn 1s ease-out 0.9s both;
+          }
+          
+          .animate-slide-up {
+            animation: slideUp 1s ease-out 0.8s both;
+          }
+      
+          .glitch-effect:hover {
+            animation: glitch 0.3s ease-in-out infinite;
+          }
+      
+          .floating-shape {
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+          }
+      
+          .floating-shape:nth-child(2) {
+            animation-delay: 0.5s;
+            animation-duration: 4s;
+          }
+      
+          .floating-shape:nth-child(3) {
+            animation-delay: 1s;
+            animation-duration: 2s;
+          }
+      
+          .floating-shape:nth-child(4) {
+            animation-delay: 1.5s;
+            animation-duration: 3.5s;
+          }
+        </style>
+      </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('eventModal')">&times;</span>
+            <h2 id="modal-title" class="text-3xl font-bold text-gray-900 mb-4"></h2>
+            <p id="modal-type" class="text-md text-gray-600 mb-2"></p>
+            <p id="modal-date" class="text-md text-gray-600 mb-2"></p>
+            <p id="modal-location" class="text-md text-gray-600 mb-4"></p>
+            <p id="modal-description" class="text-gray-700 mb-4"></p>
+            <p id="modal-price" class="text-2xl font-bold text-purple-600 mb-4"></p>
+            <p id="modal-tickets" class="text-md text-gray-600"></p>
+            <button class="bg-purple-600 text-white px-6 py-3 mt-6 rounded-lg hover:bg-purple-700 transition-colors"
+                onclick="reserveTicket()">
+                Réserver des billets
+            </button>
+        </div>
+    </div>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('confirmationModal')">&times;</span>
+            <svg class="mx-auto h-16 w-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h2 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Réservation Confirmée !</h2>
+            <p class="text-gray-700 mb-6">Votre ticket a été réservé avec succès.</p>
+            <button class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors"
+                onclick="closeAllModals()">
+                Fermer
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">CultureHub</h3>
+                    <p class="text-gray-300">Votre plateforme dédiée à la découverte et au partage culturel.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Navigation</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="index.html" class="hover:text-purple-400">Accueil</a></li>
+                        <li><a href="evenements.html" class="hover:text-purple-400">Événements</a></li>
+                        <li><a href="activites.html" class="hover:text-purple-400">Activités</a></li>
+                        <li><a href="ressources.html" class="hover:text-purple-400">Ressources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Communauté</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-purple-400">Forum</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-purple-400">À propos</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Contact</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 CultureHub. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Navbar functionality
+        function toggleUserMenu() {
+            document.getElementById('user-dropdown').classList.toggle('hidden');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+            document.getElementById('menu-icon').classList.toggle('hidden');
+            document.getElementById('close-icon').classList.toggle('hidden');
+        }
+
+        // Event data (for demonstration purposes, in a real app this would come from an API)
+        const allEvents = [
+            {
+                id: 1,
+                title: "Festival Jazz d'Été",
+                type: "Concert",
+                city: "paris",
+                date: "2025-06-15",
+                time: "15 Juin 2025 • 20h00",
+                location: "Palais des Congrès, Paris",
+                description: "Une soirée exceptionnelle avec les plus grands artistes de jazz contemporain dans un cadre intimiste.",
+                price: "35€",
+                tickets: "45 places",
+                status: "upcoming",
+                colorClass: "purple" // Added for dynamic color in card
+            },
+            {
+                id: 2,
+                title: "Art Numérique Contemporain",
+                type: "Exposition",
+                city: "lyon",
+                date: "2025-07-02", // Start date for filtering
+                endDate: "2025-09-15",
+                time: "2 Juillet - 15 Sept 2025",
+                location: "Musée d'Art Moderne, Lyon",
+                description: "Plongez dans l'univers fascinant de l'art numérique avec des œuvres interactives et immersives.",
+                price: "12€",
+                tickets: "Illimitée",
+                status: "upcoming",
+                colorClass: "blue" // Added for dynamic color in card
+            },
+            {
+                id: 3,
+                title: "Hamlet Revisité",
+                type: "Théâtre",
+                city: "marseille",
+                date: "2025-01-15",
+                time: "15 Janvier 2025 • 19h30",
+                location: "Théâtre National, Marseille",
+                description: "Une adaptation moderne et saisissante du chef-d'œuvre de Shakespeare par la troupe marseillaise.",
+                price: "28€",
+                tickets: "Terminé", // Reflects the "Terminé" state from HTML
+                status: "past",
+                colorClass: "green" // Added for dynamic color in card
+            },
+            {
+                id: 4,
+                title: "Festival d'Avignon",
+                type: "Festival",
+                city: "avignon",
+                date: "2025-07-04",
+                endDate: "2025-07-27",
+                time: "4 - 27 Juillet 2025",
+                location: "Cour d'honneur du Palais des Papes, Avignon",
+                description: "Le plus prestigieux festival de théâtre en France avec des créations contemporaines et des classiques revisités.",
+                price: "25€ - 85€",
+                tickets: "2000 places",
+                status: "upcoming",
+                colorClass: "red" // Added for dynamic color in card
+            },
+            {
+                id: 5,
+                title: "Atelier Peinture Impressionniste",
+                type: "Atelier",
+                city: "toulouse",
+                date: "2025-06-10",
+                time: "10 Juin 2025 • 14h00",
+                location: "Atelier d'Art Moderne, Toulouse",
+                description: "Découvrez les techniques des maîtres impressionnistes dans un atelier pratique avec un artiste professionnel.",
+                price: "45€",
+                tickets: "15 places",
+                status: "upcoming",
+                colorClass: "yellow" // Added for dynamic color in card
+            },
+            {
+                id: 6,
+                title: "Concert de Noël Philharmonique",
+                type: "Concert",
+                city: "bordeaux",
+                date: "2024-12-20",
+                time: "20 Décembre 2024 • 20h30",
+                location: "Grand-Théâtre, Bordeaux",
+                description: "L'Orchestre National Bordeaux Aquitaine vous a présenté un programme exceptionnel pour les fêtes de fin d'année.",
+                price: "50€",
+                tickets: "Terminé", // Reflects the "Terminé" state from HTML
+                status: "past",
+                colorClass: "indigo" // Added for dynamic color in card
+            }
+        ];
+
+        let currentEventTypeFilter = 'upcoming'; // 'upcoming' or 'past'
+        let currentEventId = null; // Pour stocker l'ID de l'événement actuellement affiché dans la modal
+
+
+        function renderEvents(events) {
+            const eventsGrid = document.getElementById('events-grid');
+            eventsGrid.innerHTML = ''; // Clear existing events
+            const noEventsMessage = document.getElementById('no-events-message');
+
+            if (events.length === 0) {
+                noEventsMessage.classList.remove('hidden');
+                return;
+            } else {
+                noEventsMessage.classList.add('hidden');
+            }
+
+            events.forEach(event => {
+                const card = document.createElement('div');
+                card.classList.add('bg-white', 'rounded-xl', 'shadow-md', 'overflow-hidden', 'hover:shadow-lg', 'transition-shadow', 'event-card');
+                card.setAttribute('data-id', event.id);
+                card.setAttribute('data-city', event.city);
+                card.setAttribute('data-type', event.type.toLowerCase());
+                card.setAttribute('data-date', event.date);
+                card.setAttribute('data-status', event.status);
+
+                // Determine background gradient and text color based on event type or custom color
+                let bgColorClass = '';
+                let textColorClass = '';
+                switch (event.colorClass) {
+                    case 'purple':
+                        bgColorClass = 'from-purple-400 to-pink-400';
+                        textColorClass = 'text-purple-600';
+                        break;
+                    case 'blue':
+                        bgColorClass = 'from-blue-400 to-indigo-400';
+                        textColorClass = 'text-blue-600';
+                        break;
+                    case 'green':
+                        bgColorClass = 'from-green-400 to-teal-400';
+                        textColorClass = 'text-green-600';
+                        break;
+                    case 'red':
+                        bgColorClass = 'from-red-400 to-orange-400';
+                        textColorClass = 'text-red-600';
+                        break;
+                    case 'yellow':
+                        bgColorClass = 'from-yellow-400 to-orange-400';
+                        textColorClass = 'text-yellow-600';
+                        break;
+                    case 'indigo':
+                        bgColorClass = 'from-indigo-400 to-purple-500';
+                        textColorClass = 'text-indigo-600';
+                        break;
+                    default:
+                        bgColorClass = 'from-gray-400 to-gray-500'; // Default fallback
+                        textColorClass = 'text-gray-600';
+                }
+
+                card.innerHTML = `
+                    <div class="h-48 bg-gradient-to-r ${bgColorClass} relative">
+                        <div class="absolute top-4 left-4 bg-white px-3 py-1 rounded-full text-sm font-semibold ${textColorClass}">
+                            ${event.type.toUpperCase()}
+                        </div>
+                        <div class="absolute top-4 right-4 ${event.status === 'past' ? 'bg-red-500' : 'bg-black bg-opacity-50'} text-white px-2 py-1 rounded text-sm">
+                            ${event.tickets}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            ${event.time}
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">${event.title}</h3>
+                        <p class="text-gray-600 mb-3">${event.description.substring(0, 100)}...</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-4">
+                            <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            ${event.location}
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold ${textColorClass}">${event.price}</span>
+                            <button class="${event.status === 'past' ? 'bg-gray-600' : `bg-${event.colorClass}-600`} text-white px-6 py-2 rounded-lg ${event.status === 'past' ? 'hover:bg-gray-700' : `hover:bg-${event.colorClass}-700`} transition-colors"
+                                onclick="showEventDetails(${event.id})" ${event.status === 'past' ? 'disabled' : ''}>
+                                ${event.status === 'past' ? 'Terminé' : 'Voir détails'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                eventsGrid.appendChild(card);
+            });
+        }
+
+        function filterEvents() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value.toLowerCase();
+            const dateFilter = document.getElementById('dateFilter').value; //YYYY-MM-DD format
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // Normalize to start of day for comparison
+
+            const filtered = allEvents.filter(event => {
+                const eventDate = new Date(event.date);
+                eventDate.setHours(0, 0, 0, 0);
+
+                // Search term filter
+                const matchesSearch = event.title.toLowerCase().includes(searchTerm) ||
+                    event.description.toLowerCase().includes(searchTerm);
+
+                // City filter
+                const matchesCity = cityFilter === '' || event.city === cityFilter;
+
+                // Type filter
+                const matchesType = typeFilter === '' || event.type.toLowerCase() === typeFilter;
+
+                // Date filter
+                const matchesDate = dateFilter === '' || event.date === dateFilter;
+
+                // Status filter (upcoming/past)
+                let matchesStatus = false;
+                if (currentEventTypeFilter === 'upcoming') {
+                    matchesStatus = eventDate >= today;
+                } else if (currentEventTypeFilter === 'past') {
+                    matchesStatus = eventDate < today;
+                }
+
+                return matchesSearch && matchesCity && matchesType && matchesDate && matchesStatus;
+            });
+
+            renderEvents(filtered);
+        }
+
+        function toggleEventType(type) {
+            currentEventTypeFilter = type;
+            const upcomingBtn = document.getElementById('upcomingBtn');
+            const pastBtn = document.getElementById('pastBtn');
+
+            if (type === 'upcoming') {
+                upcomingBtn.classList.add('bg-purple-600', 'text-white');
+                upcomingBtn.classList.remove('text-gray-600', 'hover:text-gray-900');
+                pastBtn.classList.remove('bg-purple-600', 'text-white');
+                pastBtn.classList.add('text-gray-600', 'hover:text-gray-900');
+            } else {
+                pastBtn.classList.add('bg-purple-600', 'text-white');
+                pastBtn.classList.remove('text-gray-600', 'hover:text-gray-900');
+                upcomingBtn.classList.remove('bg-purple-600', 'text-white');
+                upcomingBtn.classList.add('text-gray-600', 'hover:text-gray-900');
+            }
+            filterEvents(); // Re-apply filters with the new status
+        }
+
+        function showEventDetails(id) {
+            const event = allEvents.find(e => e.id === id);
+            if (event) {
+                currentEventId = id; // Store the ID of the event
+                document.getElementById('modal-title').textContent = event.title;
+                document.getElementById('modal-type').textContent = `Type: ${event.type}`;
+                document.getElementById('modal-date').textContent = `Date: ${event.time}`;
+                document.getElementById('modal-location').textContent = `Lieu: ${event.location}`;
+                document.getElementById('modal-description').textContent = event.description;
+                document.getElementById('modal-price').textContent = `Prix: ${event.price}`;
+                document.getElementById('modal-tickets').textContent = `Places: ${event.tickets}`;
+
+                const modal = document.getElementById('eventModal');
+                modal.style.display = 'flex'; // Use flex to center
+            }
+        }
+
+        // Fonction pour réserver le ticket
+        function reserveTicket() {
+            // Ici, vous pouvez ajouter la logique de réservation réelle (ex: appel API)
+            console.log(`Réservation du ticket pour l'événement ID: ${currentEventId}`);
+
+            // Fermer la première modal
+            closeModal('eventModal');
+
+            // Afficher la modal de confirmation
+            const confirmationModal = document.getElementById('confirmationModal');
+            confirmationModal.style.display = 'flex';
+        }
+
+        // Fonction pour fermer une modal spécifique
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Fonction pour fermer toutes les modals
+        function closeAllModals() {
+            closeModal('eventModal');
+            closeModal('confirmationModal');
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const eventModal = document.getElementById('eventModal');
+            const confirmationModal = document.getElementById('confirmationModal');
+
+            if (event.target == eventModal) {
+                closeModal('eventModal');
+            }
+            if (event.target == confirmationModal) {
+                closeModal('confirmationModal');
+            }
+        }
+
+        // Initial render of events when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleEventType('upcoming'); // Start with 'upcoming' events active
+        });
+    </script>
+</body>
+
+</html>
