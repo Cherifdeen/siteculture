@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres - CultureHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-purple-600">CultureHub</h1>
+                </div>
+
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Accueil</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Événements</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Activités</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Ressources</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Membres</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Cotisations</a>
+
+                        <div class="relative ml-3">
+                            <button id="user-menu-button" class="bg-purple-600 text-white p-2 rounded-full hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500" onclick="toggleUserMenu()">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </button>
+                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-purple-600 bg-purple-50 font-medium">Paramètres</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes favoris</a>
+                                <hr class="my-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-purple-600 focus:outline-none focus:text-purple-600" onclick="toggleMobileMenu()">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Événements</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Activités</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Ressources</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Membres</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Cotisations</a>
+                <hr class="my-2">
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Profil</a>
+                <a href="#" class="text-purple-600 bg-purple-50 block px-3 py-2 rounded-md text-base font-medium">Paramètres</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">Paramètres</h1>
+                <p class="mt-2 text-gray-600">Gérez vos préférences et paramètres de compte</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-lg shadow-md p-6 sticky top-24">
+                        <nav class="space-y-2">
+                            <button onclick="showSection('profile')" class="w-full text-left px-4 py-3 rounded-md text-sm font-medium bg-purple-50 text-purple-600 border-l-4 border-purple-600 setting-nav-btn">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
+                                    Profil
+                                </div>
+                            </button>
+                            <button onclick="showSection('notifications')" class="w-full text-left px-4 py-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-purple-600 transition-colors setting-nav-btn">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM7 12h2m6 0h2M7 8h2m6 0h2"></path>
+                                    </svg>
+                                    Notifications
+                                </div>
+                            </button>
+                            <button onclick="showSection('privacy')" class="w-full text-left px-4 py-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-purple-600 transition-colors setting-nav-btn">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                    Confidentialité
+                                </div>
+                            </button>
+                            <button onclick="showSection('preferences')" class="w-full text-left px-4 py-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-purple-600 transition-colors setting-nav-btn">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    Préférences
+                                </div>
+                            </button>
+                            <button onclick="showSection('security')" class="w-full text-left px-4 py-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-purple-600 transition-colors setting-nav-btn">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                    </svg>
+                                    Sécurité
+                                </div>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <div id="profile-section" class="setting-section">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-6">Informations du profil</h2>
+
+                            <form class="space-y-6">
+                                <div class="flex items-center space-x-6">
+                                    <div class="shrink-0">
+                                        <img class="h-20 w-20 object-cover rounded-full" src="https://via.placeholder.com/150" alt="Photo de profil">
+                                    </div>
+                                    <div class="flex-1">
+                                        <button type="button" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm font-medium">
+                                            Changer la photo
+                                        </button>
+                                        <button type="button" class="ml-3 bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 text-sm font-medium">
+                                            Supprimer
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">Prénom</label>
+                                        <input type="text" id="firstName" name="firstName" value="Marie" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                    </div>
+                                    <div>
+                                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Nom</label>
+                                        <input type="text" id="lastName" name="lastName" value="Dupont" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" id="email" name="email" value="marie.dupont@exemple.com" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                </div>
+
+                                <div>
+                                    <label for="bio" class="block text-sm font-medium text-gray-700 mb-2">Biographie</label>
+                                    <textarea id="bio" name="bio" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500" placeholder="Parlez-nous de vous...">Passionnée de culture et d'arts, j'aime découvrir de nouveaux événements et partager mes expériences avec la communauté.</textarea>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <button type="submit" class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium">
+                                        Sauvegarder
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="notifications-section" class="setting-section hidden">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-6">Paramètres de notification</h2>
+
+                            <div class="space-y-6">
+                                <div class="border-b border-gray-200 pb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Notifications par email</h3>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <label class="text-sm font-medium text-gray-700">Nouveaux événements</label>
+                                                <p class="text-sm text-gray-500">Recevoir des notifications pour les nouveaux événements culturels</p>
+                                            </div>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" class="sr-only peer" checked>
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                            </label>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <label class="text-sm font-medium text-gray-700">Rappels d'événements</label>
+                                                <p class="text-sm text-gray-500">Rappels pour les événements auxquels vous participez</p>
+                                            </div>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" class="sr-only peer" checked>
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-b border-gray-200 pb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Notifications push</h3>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <label class="text-sm font-medium text-gray-700">Messages privés</label>
+                                                <p class="text-sm text-gray-500">Notifications pour les nouveaux messages privés</p>
+                                            </div>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" class="sr-only peer">
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <button type="button" class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium">
+                                        Sauvegarder
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="privacy-section" class="setting-section hidden">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-6">Paramètres de confidentialité</h2>
+
+                            <div class="space-y-6">
+                                <div class="border-b border-gray-200 pb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Visibilité du profil</h3>
+                                    <div class="space-y-3">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="visibility" value="public" checked class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-3 text-sm text-gray-700">Public - Visible par tous les membres</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="visibility" value="members" class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-3 text-sm text-gray-700">Membres uniquement - Visible par les membres connectés</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="visibility" value="private" class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-3 text-sm text-gray-700">Privé - Invisible dans les recherches</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="border-b border-gray-200 pb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Contacts autorisés</h3>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <label class="text-sm font-medium text-gray-700">Permettre aux autres membres de me contacter</label>
+                                            <p class="text-sm text-gray-500">Les autres membres peuvent vous envoyer des messages privés</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <button type="button" class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium">
+                                        Sauvegarder
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="preferences-section" class="setting-section hidden">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-6">Préférences</h2>
+
+                            <div class="space-y-6">
+                                <div class="border-b border-gray-200 pb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Langue</h3>
+                                    <select class="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                        <option value="fr" selected>Français</option>
+                                        <option value="en">English</option>
+                                        <option value="es">Español</option>
+                                    </select>
+                                </div>
+
+                                <div class="border-b border-gray-200 pb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Thème</h3>
+                                    <div class="space-y-3">
+                                        <label class="flex items-center">
+                                            <input type="radio" name="theme" value="light" checked class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-3 text-sm text-gray-700">Clair</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="theme" value="dark" class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-3 text-sm text-gray-700">Sombre</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="radio" name="theme" value="auto" class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-3 text-sm text-gray-700">Automatique (selon le système)</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="border-b border-gray-200 pb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Centres d'intérêt</h3>
+                                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                        <label class="flex items-center">
+                                            <input type="checkbox" checked class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-2 text-sm text-gray-700">Littérature</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-2 text-sm text-gray-700">Danse</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" checked class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-2 text-sm text-gray-700">Musique</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-2 text-sm text-gray-700">Théâtre</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" checked class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-2 text-sm text-gray-700">Cinéma</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="text-purple-600 focus:ring-purple-500">
+                                            <span class="ml-2 text-sm text-gray-700">Arts visuels</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <button type="button" class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium">
+                                        Sauvegarder
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="security-section" class="setting-section hidden">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-6">Sécurité</h2>
+
+                            <div class="space-y-6">
+                                <div class="border-b border-gray-200 pb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Changer le mot de passe</h3>
+                                    <form class="space-y-4">
+                                        <div>
+                                            <label for="currentPassword" class="block text-sm font-medium text-gray-700 mb-2">Mot de passe actuel</label>
+                                            <input type="password" id="currentPassword" name="currentPassword" class="w-full max-w-md px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                        </div>
+                                        <div>
+                                            <label for="newPassword" class="block text-sm font-medium text-gray-700 mb-2">Nouveau mot de passe</label>
+                                            <input type="password" id="newPassword" name="newPassword" class="w-full max-w-md px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                        </div>
+                                        <div>
+                                            <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">Confirmer le nouveau mot de passe</label>
+                                            <input type="password" id="confirmPassword" name="confirmPassword" class="w-full max-w-md px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                        </div>
+                                        <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium">
+                                            Changer le mot de passe
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="border-b border-gray-200 pb-6">
+                                    <h3 class="text-lg font-medium text-gray-900 mb-4">Authentification à deux facteurs</h3>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm text-gray-700">Ajoutez une couche de sécurité supplémentaire à votre compte</p>
+                                            <p class="text-sm text-gray-500 mt-1">L'authentification à deux facteurs (2FA) protège votre compte en exigeant un deuxième facteur de vérification, tel qu'un code de votre téléphone, en plus de votre mot de passe.</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                        </label>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-4">Pour configurer l'authentification à deux facteurs, veuillez activer le bouton ci-dessus et suivre les instructions qui apparaîtront.</p>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <button type="button" class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium">
+                                        Sauvegarder
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white shadow-lg mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            &copy; 2025 CultureHub. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        function toggleUserMenu() {
+            document.getElementById('user-dropdown').classList.toggle('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.setting-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId + '-section').classList.remove('hidden');
+
+            // Update active navigation button styling
+            document.querySelectorAll('.setting-nav-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-50', 'text-purple-600', 'border-l-4', 'border-purple-600');
+                btn.classList.add('text-gray-700', 'hover:bg-gray-100', 'hover:text-purple-600');
+            });
+
+            const activeButton = document.querySelector(`.setting-nav-btn[onclick="showSection('${sectionId}')"]`);
+            activeButton.classList.add('bg-purple-50', 'text-purple-600', 'border-l-4', 'border-purple-600');
+            activeButton.classList.remove('text-gray-700', 'hover:bg-gray-100', 'hover:text-purple-600');
+        }
+
+        // Initialize with the profile section shown
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('profile');
+        });
+    </script>
+</body>
+
+</html>
