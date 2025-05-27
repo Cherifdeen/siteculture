@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CultureHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Nom du site -->
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-purple-600">CultureHub</h1>
+                </div>
+
+                <!-- Menu desktop (caché sur mobile) -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="text-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-purple-600">Accueil</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Événements</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Activités</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Ressources</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Membres</a>
+                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Cotisations</a>
+
+
+                        <!-- Menu utilisateur desktop -->
+                        <div class="relative ml-3">
+                            <button id="user-menu-button" class="bg-purple-600 text-white p-2 rounded-full hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500" onclick="toggleUserMenu()">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </button>
+                            <!-- Dropdown menu utilisateur -->
+                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paramètres</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes favoris</a>
+                                <hr class="my-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bouton menu mobile -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-purple-600 focus:outline-none focus:text-purple-600" onclick="toggleMobileMenu()">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="text-purple-600 block px-3 py-2 rounded-md text-base font-medium bg-purple-50">Accueil</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Événements</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Activités</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Ressources</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Membres</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Cotisations</a>
+                <hr class="my-2">
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Profil</a>
+                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Paramètres</a>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Contenu principal -->
+<main class="pt-16">
+      <!-- En-tête de la page -->
+      <div class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-bold mb-4">Administration des Demandes</h1>
+            <p class="text-xl text-purple-100">Gestion des demandes de permission CultureHub</p>
+        </div>
+    </div>
+
+    <!-- Statistiques -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">En attente</p>
+                        <p class="text-2xl font-bold text-gray-900" id="pending-count">5</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-green-100 text-green-600">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Approuvées</p>
+                        <p class="text-2xl font-bold text-gray-900" id="approved-count">12</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-red-100 text-red-600">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Refusées</p>
+                        <p class="text-2xl font-bold text-gray-900" id="rejected-count">3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtres -->
+        <div class="bg-white rounded-lg shadow p-6 mb-8">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <select id="status-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                    <option value="">Tous les statuts</option>
+                    <option value="pending">En attente</option>
+                    <option value="approved">Approuvé</option>
+                    <option value="rejected">Refusé</option>
+                </select>
+                <input type="text" id="search-input" placeholder="Rechercher par nom ou email..." 
+                       class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+            </div>
+        </div>
+
+        <!-- Liste des demandes -->
+        <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-bold text-gray-900">Demandes de Permission</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Candidat</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Intérêts</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requests-table" class="bg-white divide-y divide-gray-200">
+                        <!-- Les demandes seront générées par JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="px-6 py-4 border-t border-gray-200 flex justify-between items-center">
+                <p class="text-sm text-gray-700">Affichage de 1 à 5 sur 24 demandes</p>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50">Précédent</button>
+                    <button class="px-3 py-1 bg-purple-600 text-white rounded text-sm hover:bg-purple-700">1</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50">2</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50">3</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50">Suivant</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de détails -->
+    <div id="detail-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                    <h3 id="modal-title" class="text-xl font-bold text-gray-900">Détails de la demande</h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="modal-content" class="p-6">
+                    <!-- Le contenu sera généré par JavaScript -->
+                </div>
+                <div class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
+                    <button onclick="closeModal()" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">
+                        Fermer
+                    </button>
+                    <button id="reject-btn" onclick="updateStatus('rejected')" class="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700">
+                        Refuser
+                    </button>
+                    <button id="approve-btn" onclick="updateStatus('approved')" class="px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700">
+                        Approuver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation -->
+    <div id="confirm-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Confirmer l'action</h3>
+                    <p id="confirm-message" class="text-gray-700 mb-6"></p>
+                    <div class="flex justify-end space-x-3">
+                        <button onclick="closeConfirmModal()" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">
+                            Annuler
+                        </button>
+                        <button id="confirm-action-btn" class="px-4 py-2 text-white rounded-lg">
+                            Confirmer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">CultureHub</h3>
+                    <p class="text-gray-300">Votre plateforme dédiée à la découverte et au partage culturel.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Navigation</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-purple-400">Accueil</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Événements</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Activités</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Ressources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Communauté</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-purple-400">Forum</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-purple-400">À propos</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Contact</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 CultureHub. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données de démonstration
+        let requests = [
+            {
+                id: 1,
+                firstName: "Marie",
+                lastName: "Dubois",
+                email: "marie.dubois@email.com",
+                phone: "06 12 34 56 78",
+                age: 28,
+                address: "15 rue de la République, 75011 Paris",
+                interests: ["musique", "theatre", "art"],
+                experience: "amateur",
+                motivation: "Passionnée de culture depuis mon enfance, je souhaite rejoindre CultureHub pour découvrir de nouveaux horizons artistiques et partager ma passion avec d'autres amateurs. J'ai participé à plusieurs ateliers de théâtre amateur et j'aimerais élargir mes connaissances.",
+                availability: "weekend",
+                date: "2024-05-20",
+                status: "pending"
+            },
+            {
+                id: 2,
+                firstName: "Jean",
+                lastName: "Martin",
+                email: "jean.martin@email.com",
+                phone: "07 98 76 54 32",
+                age: 35,
+                address: "42 avenue Mozart, 69002 Lyon",
+                interests: ["cinema", "litterature"],
+                experience: "confirme",
+                motivation: "En tant que critique de cinéma indépendant, je souhaite enrichir mes connaissances et échanger avec d'autres passionnés. CultureHub me semble être l'endroit idéal pour cela.",
+                availability: "flexible",
+                date: "2024-05-18",
+                status: "approved"
+            },
+            {
+                id: 3,
+                firstName: "Sophie",
+                lastName: "Bernard",
+                email: "sophie.bernard@email.com",
+                phone: "06 55 44 33 22",
+                age: 22,
+                address: "8 place du Capitole, 31000 Toulouse",
+                interests: ["danse", "musique"],
+                experience: "debutant",
+                motivation: "Étudiante en arts du spectacle, je cherche à approfondir ma pratique de la danse contemporaine et à découvrir d'autres formes d'expression artistique.",
+                availability: "soir-semaine",
+                date: "2024-05-15",
+                status: "pending"
+            },
+            {
+                id: 4,
+                firstName: "Pierre",
+                lastName: "Lefebvre",
+                email: "pierre.lefebvre@email.com",
+                phone: "06 11 22 33 44",
+                age: 45,
+                address: "23 rue Victor Hugo, 44000 Nantes",
+                interests: ["art", "litterature", "theatre"],
+                experience: "expert",
+                motivation: "Artiste plasticien professionnel, je souhaite transmettre mon expérience et découvrir de nouveaux talents dans la communauté CultureHub.",
+                availability: "limitee",
+                date: "2024-05-10",
+                status: "rejected"
+            },
+            {
+                id: 5,
+                firstName: "Emma",
+                lastName: "Rousseau",
+                email: "emma.rousseau@email.com",
+                phone: "07 66 77 88 99",
+                age: 31,
+                address: "12 boulevard Saint-Germain, 75005 Paris",
+                interests: ["musique", "cinema", "art"],
+                experience: "amateur",
+                motivation: "Musicienne amateur et mélomane, je cherche à enrichir ma culture artistique et à rencontrer d'autres passionnés pour des projets collaboratifs.",
+                availability: "weekend",
+                date: "2024-05-12",
+                status: "pending"
+            }
+        ];
+
+        let currentRequestId = null;
+        let currentAction = null;
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            renderRequests();
+            updateStats();
+            setupFilters();
+        });
+
+        // Rendu des demandes
+        function renderRequests(filteredRequests = null) {
+            const tbody = document.getElementById('requests-table');
+            const requestsToRender = filteredRequests || requests;
+            
+            tbody.innerHTML = requestsToRender.map(request => {
+                const statusClass = {
+                    'pending': 'bg-yellow-100 text-yellow-800',
+                    'approved': 'bg-green-100 text-green-800',
+                    'rejected': 'bg-red-100 text-red-800'
+                };
+
+                const statusText = {
+                    'pending': 'En attente',
+                    'approved': 'Approuvé',
+                    'rejected': 'Refusé'
+                };
+
+                return `
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">${request.firstName} ${request.lastName}</div>
+                            <div class="text-sm text-gray-500">Âge: ${request.age}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">${request.email}</div>
+                            <div class="text-sm text-gray-500">${request.phone}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">${request.interests.join(', ')}</div>
+                            <div class="text-sm text-gray-500">Niveau: ${request.experience}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            ${new Date(request.date).toLocaleDateString('fr-FR')}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass[request.status]}">
+                                ${statusText[request.status]}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <button onclick="showDetails(${request.id})" class="text-purple-600 hover:text-purple-900 mr-3">
+                                Voir détails
+                            </button>
+                            ${request.status === 'pending' ? `
+                                <button onclick="showConfirm(${request.id}, 'approved')" class="text-green-600 hover:text-green-900 mr-2">
+                                    Approuver
+                                </button>
+                                <button onclick="showConfirm(${request.id}, 'rejected')" class="text-red-600 hover:text-red-900">
+                                    Refuser
+                                </button>
+                            ` : ''}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Affichage des détails
+        function showDetails(requestId) {
+            const request = requests.find(r => r.id === requestId);
+            if (!request) return;
+
+            currentRequestId = requestId;
+
+            document.getElementById('modal-title').textContent = `Demande de ${request.firstName} ${request.lastName}`;
+            
+            const interestsText = {
+                'musique': 'Musique',
+                'theatre': 'Théâtre',
+                'cinema': 'Cinéma',
+                'art': 'Arts visuels',
+                'litterature': 'Littérature',
+                'danse': 'Danse'
+            };
+
+            const experienceText = {
+                'debutant': 'Débutant',
+                'amateur': 'Amateur',
+                'confirme': 'Confirmé',
+                'expert': 'Expert/Professionnel'
+            };
+
+            const availabilityText = {
+                'soir-semaine': 'Soirs de semaine',
+                'weekend': 'Week-ends',
+                'flexible': 'Flexible',
+                'limitee': 'Limitée'
+            };
+
+            document.getElementById('modal-content').innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Informations personnelles</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <span class="font-medium text-gray-600">Nom complet:</span>
+                                <span class="ml-2 text-gray-900">${request.firstName} ${request.lastName}</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-600">Âge:</span>
+                                <span class="ml-2 text-gray-900">${request.age} ans</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-600">Email:</span>
+                                <span class="ml-2 text-gray-900">${request.email}</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-600">Téléphone:</span>
+                                <span class="ml-2 text-gray-900">${request.phone}</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-600">Adresse:</span>
+                                <span class="ml-2 text-gray-900">${request.address}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Profil culturel</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <span class="font-medium text-gray-600">Intérêts:</span>
+                                <div class="mt-1">
+                                    ${request.interests.map(interest => 
+                                        `<span class="inline-block bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-2 mb-1">
+                                            ${interestsText[interest]}
+                                        </span>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-600">Expérience:</span>
+                                <span class="ml-2 text-gray-900">${experienceText[request.experience] || 'Non spécifié'}</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-600">Disponibilité:</span>
+                                <span class="ml-2 text-gray-900">${availabilityText[request.availability] || 'Non spécifié'}</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-600">Date de demande:</span>
+                                <span class="ml-2 text-gray-900">${new Date(request.date).toLocaleDateString('fr-FR')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <h4 class="text-lg font-semibold text-gray-900 mb-3">Motivation</h4>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-gray-700">${request.motivation}</p>
+                    </div>
+                </div>
+            `;
+
+            // Afficher/masquer les boutons selon le statut
+            const approveBtn = document.getElementById('approve-btn');
+            const rejectBtn = document.getElementById('reject-btn');
+            
+            if (request.status === 'pending') {
+                approveBtn.style.display = 'inline-block';
+                rejectBtn.style.display = 'inline-block';
+            } else {
+                approveBtn.style.display = 'none';
+                rejectBtn.style.display = 'none';
+            }
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+
+        // Fermer la modal
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+            currentRequestId = null;
+        }
+
+        // Afficher la confirmation
+        function showConfirm(requestId, action) {
+            const request = requests.find(r => r.id === requestId);
+            if (!request) return;
+
+            currentRequestId = requestId;
+            currentAction = action;
+
+            const actionText = action === 'approved' ? 'approuver' : 'refuser';
+            const confirmMessage = `Êtes-vous sûr de vouloir ${actionText} la demande de ${request.firstName} ${request.lastName} ?`;
+            
+            document.getElementById('confirm-message').textContent = confirmMessage;
+            
+            const confirmBtn = document.getElementById('confirm-action-btn');
+            confirmBtn.textContent = action === 'approved' ? 'Approuver' : 'Refuser';
+            confirmBtn.className = `px-4 py-2 text-white rounded-lg ${action === 'approved' ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'}`;
+            confirmBtn.onclick = () => confirmAction();
+
+            document.getElementById('confirm-modal').classList.remove('hidden');
+        }
+
+        // Fermer la modal de confirmation
+        function closeConfirmModal() {
+            document.getElementById('confirm-modal').classList.add('hidden');
+            currentRequestId = null;
+            currentAction = null;
+        }
+
+        // Confirmer l'action
+        function confirmAction() {
+            if (currentRequestId && currentAction) {
+                updateStatus(currentAction);
+                closeConfirmModal();
+            }
+        }
+
+        // Mettre à jour le statut
+        function updateStatus(status) {
+            if (!currentRequestId) return;
+
+            const requestIndex = requests.findIndex(r => r.id === currentRequestId);
+            if (requestIndex !== -1) {
+                requests[requestIndex].status = status;
+                renderRequests();
+                updateStats();
+                closeModal();
+                
+                // Afficher une notification de succès
+                showNotification(`Demande ${status === 'approved' ? 'approuvée' : 'refusée'} avec succès!`);
+            }
+        }
+
+        // Mise à jour des statistiques
+        function updateStats() {
+            const stats = requests.reduce((acc, req) => {
+                acc[req.status] = (acc[req.status] || 0) + 1;
+                return acc;
+            }, {});
+
+            document.getElementById('pending-count').textContent = stats.pending || 0;
+            document.getElementById('approved-count').textContent = stats.approved || 0;
+            document.getElementById('rejected-count').textContent = stats.rejected || 0;
+        }
+
+        // Configuration des filtres
+        function setupFilters() {
+            const statusFilter = document.getElementById('status-filter');
+            const searchInput = document.getElementById('search-input');
+
+            function applyFilters() {
+                let filtered = requests;
+
+                // Filtre par statut
+                if (statusFilter.value) {
+                    filtered = filtered.filter(req => req.status === statusFilter.value);
+                }
+
+                // Filtre par recherche
+                if (searchInput.value.trim()) {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    filtered = filtered.filter(req => 
+                        req.firstName.toLowerCase().includes(searchTerm) ||
+                        req.lastName.toLowerCase().includes(searchTerm) ||
+                        req.email.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                renderRequests(filtered);
+            }
+
+            statusFilter.addEventListener('change', applyFilters);
+            searchInput.addEventListener('input', applyFilters);
+        }
+
+        // Notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Fermer les modals en cliquant à l'extérieur
+        document.getElementById('detail-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.getElementById('confirm-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeConfirmModal();
+            }
+        });
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        // Toggle user menu
+        function toggleUserMenu() {
+            const userDropdown = document.getElementById('user-dropdown');
+            userDropdown.classList.toggle('hidden');
+        }
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const userButton = document.getElementById('user-menu-button');
+            const userDropdown = document.getElementById('user-dropdown');
+            const mobileButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Close user menu if clicked outside
+            if (!userButton.contains(event.target) && !userDropdown.contains(event.target)) {
+                userDropdown.classList.add('hidden');
+            }
+
+            // Close mobile menu if clicked outside
+            if (!mobileButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+                document.getElementById('menu-icon').classList.remove('hidden');
+                document.getElementById('close-icon').classList.add('hidden');
+            }
+        });
+
+        // Handle responsive behavior
+        window.addEventListener('resize', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
