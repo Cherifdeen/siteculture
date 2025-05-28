@@ -437,7 +437,7 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-2xl font-bold ${textColorClass}">${event.price}</span>
-                            <a href="event-details.html?id=${event.id}"
+                            <a href="events_details.html?id=${event.id}"
                                 class="${event.status === 'past' ? 'bg-gray-600' : `bg-${event.colorClass}-600`} text-white px-6 py-2 rounded-lg ${event.status === 'past' ? 'hover:bg-gray-700' : `hover:bg-${event.colorClass}-700`} transition-colors ${event.status === 'past' ? 'pointer-events-none opacity-50' : ''}">
                                 ${event.status === 'past' ? 'Terminé' : 'Voir détails'}
                             </a>
