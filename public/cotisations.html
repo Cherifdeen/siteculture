@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventSpace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Nom du site -->
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-purple-600">EventSpace</h1>
+                </div>
+
+                <!-- Menu desktop (caché sur mobile) -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="/public/accueil.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent transition-all">Accueil</a>
+                        <a href="/public/evenements.html"
+                            class="text-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-purple-600 events-link-animation">Événements</a>
+                        <a href="/public/activités.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Activités</a>
+                        <a href="/public/ressources.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Ressources</a>
+                        <a href="/Users/membres/membres.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Membres</a>
+                        <a href="/public/cotisations.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Cotisations</a>
+
+
+                        <!-- Menu utilisateur desktop -->
+                        <div class="relative ml-3">
+                            <button id="user-menu-button" class="bg-purple-600 text-white p-2 rounded-full hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500" onclick="toggleUserMenu()">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </button>
+                            <!-- Dropdown menu utilisateur -->
+                            <div id="user-dropdown"
+                                class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="/accounts/profil.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
+                                <a href="/public/paramètre.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paramètres</a>
+                                <a href="/public/favoris.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes
+                                    favoris</a>
+                                <hr class="my-1">
+                                <a href="/public/accueil.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bouton menu mobile -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-purple-600 focus:outline-none focus:text-purple-600" onclick="toggleMobileMenu()">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/public/accueil.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+                <a href="/accounts/login.html"
+                    class="text-purple-600 block px-3 py-2 rounded-md text-base font-medium bg-purple-50">Événements</a>
+                <a href="/public/activités.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Activités</a>
+                <a href="/public/ressources.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Ressources</a>
+                <a href="/Users/membres/membres.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Membres</a>
+                <a href="/public/cotisations.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Cotisations</a>
+                <hr class="my-2">
+                <a href="/accounts/profil.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Profil</a>
+                <a href="/public/paramètre.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Paramètres</a>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Contenu principal -->
+            <!-- Contenu principal -->
+<main class="pt-20 min-h-screen bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- En-tête de la page -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Cotisations</h1>
+                    <p class="text-gray-600">Organisez et participez aux cotisations pour les événements futurs</p>
+                </div>
+                <button id="create-cotisation-btn" class="mt-4 md:mt-0 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium">
+                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Créer une cotisation
+                </button>
+            </div>
+        </div>
+
+        <!-- Filtres -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <select class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    <option>Toutes les cotisations</option>
+                    <option>En cours</option>
+                    <option>Terminées</option>
+                    <option>À venir</option>
+                </select>
+                <select class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    <option>Tous les événements</option>
+                    <option>Concerts</option>
+                    <option>Théâtre</option>
+                    <option>Festivals</option>
+                    <option>Sorties</option>
+                </select>
+                <input type="text" placeholder="Rechercher..." class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent flex-grow">
+            </div>
+        </div>
+
+        <!-- Liste des cotisations -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <!-- Cotisation 1 -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">En cours</span>
+                        <span class="text-gray-500 text-sm">15 participants</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Concert Jazz Festival</h3>
+                    <p class="text-gray-600 text-sm mb-4">Cotisation pour assister au festival de jazz annuel - Transport + Hébergement</p>
+                    
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Objectif :</span>
+                            <span class="font-medium">1 500 €</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Collecté :</span>
+                            <span class="font-medium text-green-600">1 125 €</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                        <div class="text-center text-sm text-gray-600">75% de l'objectif atteint</div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center text-sm text-gray-600 mb-4">
+                        <span>🎵 Concert</span>
+                        <span>📅 15 Mars 2025</span>
+                    </div>
+                    
+                    <button onclick="openModal('cotisation-1')" class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors">
+                        Voir les détails
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cotisation 2 -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">À venir</span>
+                        <span class="text-gray-500 text-sm">8 participants</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Théâtre "Le Misanthrope"</h3>
+                    <p class="text-gray-600 text-sm mb-4">Représentation spéciale au Théâtre National - Billets groupe</p>
+                    
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Objectif :</span>
+                            <span class="font-medium">480 €</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Collecté :</span>
+                            <span class="font-medium text-blue-600">200 €</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 42%"></div>
+                        </div>
+                        <div class="text-center text-sm text-gray-600">42% de l'objectif atteint</div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center text-sm text-gray-600 mb-4">
+                        <span>🎭 Théâtre</span>
+                        <span>📅 22 Avril 2025</span>
+                    </div>
+                    
+                    <button onclick="openModal('cotisation-2')" class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors">
+                        Voir les détails
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cotisation 3 -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">Urgent</span>
+                        <span class="text-gray-500 text-sm">25 participants</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Festival Avignon</h3>
+                    <p class="text-gray-600 text-sm mb-4">Séjour culturel de 4 jours - Transport, hébergement et spectacles</p>
+                    
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Objectif :</span>
+                            <span class="font-medium">3 200 €</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Collecté :</span>
+                            <span class="font-medium text-red-600">2 800 €</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-red-500 h-2 rounded-full" style="width: 87%"></div>
+                        </div>
+                        <div class="text-center text-sm text-gray-600">87% de l'objectif atteint</div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center text-sm text-gray-600 mb-4">
+                        <span>🎪 Festival</span>
+                        <span>📅 10 Juillet 2025</span>
+                    </div>
+                    
+                    <button onclick="openModal('cotisation-3')" class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors">
+                        Voir les détails
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message si aucune cotisation -->
+        <div id="no-cotisations" class="hidden text-center py-12">
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                </svg>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">Aucune cotisation trouvée</h3>
+                <p class="text-gray-500 mb-4">Il n'y a actuellement aucune cotisation correspondant à vos critères.</p>
+                <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                    Créer la première cotisation
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal détails cotisation -->
+<div id="cotisation-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
+        <div class="p-6">
+            <!-- Header du modal -->
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="modal-title" class="text-2xl font-bold text-gray-900">Détails de la cotisation</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Contenu du modal -->
+            <div id="modal-content">
+                <!-- Le contenu sera injecté dynamiquement -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Données des cotisations (normalement viendraient d'une API)
+const cotisationsData = {
+    'cotisation-1': {
+        title: 'Concert Jazz Festival',
+        description: 'Cotisation pour assister au festival de jazz annuel organisé dans la ville voisine. Cette sortie culturelle comprend le transport en bus, l\'hébergement pour une nuit et les billets d\'entrée pour les deux jours du festival.',
+        status: 'En cours',
+        statusColor: 'green',
+        participants: 15,
+        maxParticipants: 20,
+        objectif: 1500,
+        collecte: 1125,
+        dateEvent: '15 Mars 2025',
+        dateLimit: '10 Mars 2025',
+        category: 'Concert',
+        organizer: 'Marie Dubois',
+        details: [
+            'Transport en bus privé (aller-retour)',
+            'Hébergement en auberge de jeunesse (1 nuit)',
+            'Billets festival (2 jours)',
+            'Repas du midi inclus'
+        ],
+        contributors: [
+            { name: 'Jean Martin', amount: 75, date: '28 Fév 2025' },
+            { name: 'Sophie Laurent', amount: 75, date: '27 Fév 2025' },
+            { name: 'Pierre Durand', amount: 75, date: '26 Fév 2025' }
+        ]
+    },
+    'cotisation-2': {
+        title: 'Théâtre "Le Misanthrope"',
+        description: 'Représentation spéciale de la pièce de Molière au Théâtre National. Profitez d\'une réduction de groupe pour découvrir cette œuvre classique dans un cadre prestigieux.',
+        status: 'À venir',
+        statusColor: 'blue',
+        participants: 8,
+        maxParticipants: 12,
+        objectif: 480,
+        collecte: 200,
+        dateEvent: '22 Avril 2025',
+        dateLimit: '15 Avril 2025',
+        category: 'Théâtre',
+        organizer: 'Paul Bertrand',
+        details: [
+            'Billets en carré or (places privilégiées)',
+            'Programme et livret inclus',
+            'Visite guidée du théâtre (optionnelle)',
+            'Réduction de groupe appliquée'
+        ],
+        contributors: [
+            { name: 'Anne Moreau', amount: 40, date: '25 Fév 2025' },
+            { name: 'Luc Petit', amount: 40, date: '24 Fév 2025' }
+        ]
+    },
+    'cotisation-3': {
+        title: 'Festival Avignon',
+        description: 'Séjour culturel exceptionnel de 4 jours pendant le Festival d\'Avignon. Une immersion totale dans le théâtre contemporain avec plusieurs spectacles au programme.',
+        status: 'Urgent',
+        statusColor: 'red',
+        participants: 25,
+        maxParticipants: 30,
+        objectif: 3200,
+        collecte: 2800,
+        dateEvent: '10 Juillet 2025',
+        dateLimit: '5 Mars 2025',
+        category: 'Festival',
+        organizer: 'Claire Rousseau',
+        details: [
+            'Transport en bus grand confort',
+            'Hébergement 3 nuits en résidence',
+            '6 spectacles inclus (In + Off)',
+            'Petit-déjeuner inclus',
+            'Guide accompagnateur'
+        ],
+        contributors: [
+            { name: 'Marc Leroy', amount: 128, date: '29 Fév 2025' },
+            { name: 'Julie Blanc', amount: 128, date: '28 Fév 2025' },
+            { name: 'Thomas Martin', amount: 128, date: '27 Fév 2025' }
+        ]
+    }
+};
+
+// Fonction pour ouvrir le modal avec les détails
+function openModal(cotisationId) {
+    const modal = document.getElementById('cotisation-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    
+    const data = cotisationsData[cotisationId];
+    if (!data) return;
+    
+    modalTitle.textContent = data.title;
+    
+    const pourcentage = Math.round((data.collecte / data.objectif) * 100);
+    const statusBadgeColor = {
+        'green': 'bg-green-100 text-green-800',
+        'blue': 'bg-blue-100 text-blue-800',
+        'red': 'bg-red-100 text-red-800'
+    };
+    
+    modalContent.innerHTML = `
+        <div class="space-y-6">
+            <!-- Statut et informations générales -->
+            <div class="bg-gray-50 rounded-lg p-4">
+                <div class="flex flex-wrap items-center gap-4 mb-3">
+                    <span class="${statusBadgeColor[data.statusColor]} px-3 py-1 rounded-full text-sm font-medium">${data.status}</span>
+                    <span class="text-sm text-gray-600">🎭 ${data.category}</span>
+                    <span class="text-sm text-gray-600">👥 ${data.participants}/${data.maxParticipants} participants</span>
+                </div>
+                <p class="text-gray-700">${data.description}</p>
+            </div>
+
+            <!-- Progression financière -->
+            <div class="bg-purple-50 rounded-lg p-4">
+                <h3 class="text-lg font-semibold mb-3">Progression financière</h3>
+                <div class="space-y-2">
+                    <div class="flex justify-between">
+                        <span>Objectif :</span>
+                        <span class="font-semibold">${data.objectif} €</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Collecté :</span>
+                        <span class="font-semibold text-purple-600">${data.collecte} €</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Reste à collecter :</span>
+                        <span class="font-semibold">${data.objectif - data.collecte} €</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 mt-3">
+                        <div class="bg-purple-500 h-3 rounded-full transition-all duration-300" style="width: ${pourcentage}%"></div>
+                    </div>
+                    <div class="text-center text-sm font-medium">${pourcentage}% de l'objectif atteint</div>
+                </div>
+            </div>
+
+            <!-- Dates importantes -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h4 class="font-semibold text-blue-900 mb-2">📅 Date de l'événement</h4>
+                    <p class="text-blue-700">${data.dateEvent}</p>
+                </div>
+                <div class="bg-orange-50 rounded-lg p-4">
+                    <h4 class="font-semibold text-orange-900 mb-2">⏰ Date limite cotisation</h4>
+                    <p class="text-orange-700">${data.dateLimit}</p>
+                </div>
+            </div>
+
+            <!-- Détails inclus -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Ce qui est inclus</h3>
+                <ul class="space-y-2">
+                    ${data.details.map(detail => `
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            ${detail}
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+
+            <!-- Organisateur -->
+            <div class="bg-green-50 rounded-lg p-4">
+                <h4 class="font-semibold text-green-900 mb-2">👤 Organisé par</h4>
+                <p class="text-green-700">${data.organizer}</p>
+            </div>
+
+            <!-- Contributeurs récents -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contributeurs récents</h3>
+                <div class="space-y-2 max-h-32 overflow-y-auto">
+                    ${data.contributors.map(contrib => `
+                        <div class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded">
+                            <span class="text-sm">${contrib.name}</span>
+                            <div class="text-right">
+                                <div class="text-sm font-medium">${contrib.amount} €</div>
+                                <div class="text-xs text-gray-500">${contrib.date}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+                <button class="flex-1 bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 transition-colors font-medium">
+                    💳 Participer à la cotisation
+                </button>
+                <button class="flex-1 bg-gray-100 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-200 transition-colors font-medium">
+                    📢 Partager
+                </button>
+            </div>
+        </div>
+    `;
+    
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+// Fonction pour fermer le modal
+function closeModal() {
+    const modal = document.getElementById('cotisation-modal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+// Fermer le modal en cliquant à l'extérieur
+document.getElementById('cotisation-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+// Fermer le modal avec la touche Échap
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// Bouton créer cotisation (placeholder)
+document.getElementById('create-cotisation-btn').addEventListener('click', function() {
+    alert('Fonctionnalité à venir : Créer une nouvelle cotisation');
+});
+</script>
+
+        
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">EventSpace</h3>
+                    <p class="text-gray-300">Votre plateforme dédiée à la découverte et au partage culturel.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Navigation</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-purple-400">Accueil</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Événements</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Activités</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Ressources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Communauté</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-purple-400">Forum</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-purple-400">À propos</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Contact</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 EventSpace. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        // Toggle user menu
+        function toggleUserMenu() {
+            const userDropdown = document.getElementById('user-dropdown');
+            userDropdown.classList.toggle('hidden');
+        }
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const userButton = document.getElementById('user-menu-button');
+            const userDropdown = document.getElementById('user-dropdown');
+            const mobileButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Close user menu if clicked outside
+            if (!userButton.contains(event.target) && !userDropdown.contains(event.target)) {
+                userDropdown.classList.add('hidden');
+            }
+
+            // Close mobile menu if clicked outside
+            if (!mobileButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+                document.getElementById('menu-icon').classList.remove('hidden');
+                document.getElementById('close-icon').classList.add('hidden');
+            }
+        });
+
+        // Handle responsive behavior
+        window.addEventListener('resize', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

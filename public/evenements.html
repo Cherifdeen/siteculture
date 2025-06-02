@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CultureHub - Événements</title>
+    <title>EventSpace - Événements</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Animation spécifique pour l'onglet Événements */
@@ -39,22 +39,22 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-purple-600">CultureHub</h1>
+                    <h1 class="text-2xl font-bold text-purple-600">EventSpace</h1>
                 </div>
 
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="index.html"
+                        <a href="/public/accueil.html"
                             class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent transition-all">Accueil</a>
-                        <a href="evenements.html"
+                        <a href="/public/evenements.html"
                             class="text-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-purple-600 events-link-animation">Événements</a>
-                        <a href="activites.html"
+                        <a href="/public/activités.html"
                             class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Activités</a>
-                        <a href="ressources.html"
+                        <a href="/public/ressources.html"
                             class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Ressources</a>
-                        <a href="membres.html"
+                        <a href="/Users/membres/membres.html"
                             class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Membres</a>
-                        <a href="cotisations.html"
+                        <a href="/public/cotisations.html"
                             class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Cotisations</a>
 
                         <div class="relative ml-3">
@@ -68,13 +68,13 @@
                             </button>
                             <div id="user-dropdown"
                                 class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
-                                <a href="#"
+                                <a href="/accounts/profil.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
+                                <a href="/public/paramètre.html"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paramètres</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes
+                                <a href="/public/favoris.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes
                                     favoris</a>
                                 <hr class="my-1">
-                                <a href="#"
+                                <a href="/public/accueil.html"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
                             </div>
                         </div>
@@ -98,22 +98,22 @@
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="index.html"
+                <a href="/public/accueil.html"
                     class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
-                <a href="evenements.html"
+                <a href="/accounts/login.html"
                     class="text-purple-600 block px-3 py-2 rounded-md text-base font-medium bg-purple-50">Événements</a>
-                <a href="activites.html"
+                <a href="/public/activités.html"
                     class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Activités</a>
-                <a href="ressources.html"
+                <a href="/public/ressources.html"
                     class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Ressources</a>
-                <a href="membres.html"
+                <a href="/Users/membres/membres.html"
                     class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Membres</a>
-                <a href="cotisations.html"
+                <a href="/public/cotisations.html"
                     class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Cotisations</a>
                 <hr class="my-2">
-                <a href="#"
+                <a href="/accounts/profil.html"
                     class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Profil</a>
-                <a href="#"
+                <a href="/public/paramètre.html"
                     class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Paramètres</a>
             </div>
         </div>
@@ -210,7 +210,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-2xl font-bold text-purple-400 mb-4">CultureHub</h3>
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">EventSpace</h3>
                     <p class="text-gray-300">Votre plateforme dédiée à la découverte et au partage culturel.</p>
                 </div>
                 <div>
@@ -240,7 +240,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 CultureHub. Tous droits réservés.</p>
+                <p>&copy; 2024 EventSpace. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -437,7 +437,7 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-2xl font-bold ${textColorClass}">${event.price}</span>
-                            <a href="event_details.html?id=${event.id}"
+                            <a href="event-details.html?id=${event.id}"
                                 class="${event.status === 'past' ? 'bg-gray-600' : `bg-${event.colorClass}-600`} text-white px-6 py-2 rounded-lg ${event.status === 'past' ? 'hover:bg-gray-700' : `hover:bg-${event.colorClass}-700`} transition-colors ${event.status === 'past' ? 'pointer-events-none opacity-50' : ''}">
                                 ${event.status === 'past' ? 'Terminé' : 'Voir détails'}
                             </a>

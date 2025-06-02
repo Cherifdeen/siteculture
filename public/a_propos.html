@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>À propos - CultureHub</title>
+    <title>À propos - EventSpace</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -15,19 +15,25 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo/Nom du site -->
                 <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-purple-600">CultureHub</h1>
+                    <h1 class="text-2xl font-bold text-purple-600">EventSpace</h1>
                 </div>
 
                 <!-- Menu desktop (caché sur mobile) -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Accueil</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Événements</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Activités</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Ressources</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Membres</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Cotisations</a>
-                        
+                        <a href="/public/accueil.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent transition-all">Accueil</a>
+                        <a href="/public/evenements.html"
+                            class="text-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-purple-600 events-link-animation">Événements</a>
+                        <a href="/public/activités.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Activités</a>
+                        <a href="/public/ressources.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Ressources</a>
+                        <a href="/Users/membres/membres.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Membres</a>
+                        <a href="/public/cotisations.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Cotisations</a>
+
 
                         <!-- Menu utilisateur desktop -->
                         <div class="relative ml-3">
@@ -37,12 +43,16 @@
                                 </svg>
                             </button>
                             <!-- Dropdown menu utilisateur -->
-                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paramètres</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes favoris</a>
+                            <div id="user-dropdown"
+                                class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="/accounts/profil.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
+                                <a href="/public/paramètre.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paramètres</a>
+                                <a href="/public/favoris.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes
+                                    favoris</a>
                                 <hr class="my-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                                <a href="/public/accueil.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
                             </div>
                         </div>
                     </div>
@@ -63,16 +73,23 @@
         <!-- Menu mobile -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Événements</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Activités</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Ressources</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Membres</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Cotisations</a>
-                
+                <a href="/public/accueil.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+                <a href="/accounts/login.html"
+                    class="text-purple-600 block px-3 py-2 rounded-md text-base font-medium bg-purple-50">Événements</a>
+                <a href="/public/activités.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Activités</a>
+                <a href="/public/ressources.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Ressources</a>
+                <a href="/Users/membres/membres.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Membres</a>
+                <a href="/public/cotisations.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Cotisations</a>
                 <hr class="my-2">
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Profil</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Paramètres</a>
+                <a href="/accounts/profil.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Profil</a>
+                <a href="/public/paramètre.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Paramètres</a>
             </div>
         </div>
     </nav>
@@ -83,9 +100,9 @@
         <section class="bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">À Propos de CultureHub</h1>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">À Propos de EventSpace</h1>
                     <p class="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto leading-relaxed">
-                        Découvrez l'histoire, la mission et les valeurs qui font de CultureHub votre compagnon culturel idéal
+                        Découvrez l'histoire, la mission et les valeurs qui font de EventSpace votre compagnon culturel idéal
                     </p>
                 </div>
             </div>
@@ -99,7 +116,7 @@
                         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Notre Histoire</h2>
                         <div class="space-y-4 text-gray-600 text-lg leading-relaxed">
                             <p>
-                                CultureHub est né en 2020 d'une vision simple mais ambitieuse : rendre la culture accessible à tous et créer des ponts entre les communautés à travers l'art, la musique, le théâtre et bien plus encore.
+                                EventSpace est né en 2020 d'une vision simple mais ambitieuse : rendre la culture accessible à tous et créer des ponts entre les communautés à travers l'art, la musique, le théâtre et bien plus encore.
                             </p>
                             <p>
                                 Fondée par une équipe passionnée d'artistes, de développeurs et de médiateurs culturels, notre plateforme a rapidement évolué pour devenir un véritable carrefour d'échanges culturels, rassemblant aujourd'hui plus de 50 000 membres actifs.
@@ -229,7 +246,7 @@
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Notre Équipe</h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Les passionnés qui donnent vie à CultureHub chaque jour
+                        Les passionnés qui donnent vie à EventSpace chaque jour
                     </p>
                 </div>
 
@@ -240,7 +257,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Sophie Martin</h3>
                         <p class="text-purple-600 font-medium mb-3">Directrice & Fondatrice</p>
-                        <p class="text-gray-600 text-sm">Ancienne directrice artistique, Sophie pilote la vision stratégique et les partenariats de CultureHub.</p>
+                        <p class="text-gray-600 text-sm">Ancienne directrice artistique, Sophie pilote la vision stratégique et les partenariats de EventSpace.</p>
                     </div>
 
                     <div class="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
@@ -269,7 +286,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Rejoignez Notre Aventure</h2>
                 <p class="text-xl text-purple-100 mb-8 max-w-3xl mx-auto">
-                    Que vous soyez artiste, passionné de culture ou simplement curieux, CultureHub vous accueille à bras ouverts. Ensemble, construisons un monde plus riche culturellement.
+                    Que vous soyez artiste, passionné de culture ou simplement curieux, EventSpace vous accueille à bras ouverts. Ensemble, construisons un monde plus riche culturellement.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <button class="bg-white text-purple-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg">
@@ -288,7 +305,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-2xl font-bold text-purple-400 mb-4">CultureHub</h3>
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">EventSpace</h3>
                     <p class="text-gray-300">Votre plateforme dédiée à la découverte et au partage culturel.</p>
                 </div>
                 <div>
@@ -318,7 +335,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 CultureHub. Tous droits réservés.</p>
+                <p>&copy; 2024 EventSpace. Tous droits réservés.</p>
             </div>
         </div>
     </footer>

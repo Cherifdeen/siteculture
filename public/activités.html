@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CultureHub by LIGHT Innovation - Accueil</title>
+    <title>EventSpace by LIGHT Innovation - Accueil</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -15,18 +15,24 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo/Nom du site -->
                 <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-purple-600">CultureHub</h1>
+                    <h1 class="text-2xl font-bold text-purple-600">EventSpace</h1>
                 </div>
 
                 <!-- Menu desktop (caché sur mobile) -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#" class="text-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-purple-600">Accueil</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Événements</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Activités</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Ressources</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Membres</a>
-                        <a href="#" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Cotisations</a>
+                        <a href="/public/accueil.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-transparent transition-all">Accueil</a>
+                        <a href="/public/evenements.html"
+                            class="text-purple-600 hover:text-purple-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-purple-600 events-link-animation">Événements</a>
+                        <a href="/public/activités.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Activités</a>
+                        <a href="/public/ressources.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Ressources</a>
+                        <a href="/Users/membres/membres.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Membres</a>
+                        <a href="/public/cotisations.html"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium hover:border-b-2 hover:border-purple-300 transition-all">Cotisations</a>
 
 
                         <!-- Menu utilisateur desktop -->
@@ -37,12 +43,16 @@
                                 </svg>
                             </button>
                             <!-- Dropdown menu utilisateur -->
-                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paramètres</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes favoris</a>
+                            <div id="user-dropdown"
+                                class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                                <a href="/accounts/profil.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
+                                <a href="/public/paramètre.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Paramètres</a>
+                                <a href="/public/favoris.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes
+                                    favoris</a>
                                 <hr class="my-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
+                                <a href="/public/accueil.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</a>
                             </div>
                         </div>
                     </div>
@@ -63,15 +73,23 @@
         <!-- Menu mobile -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#" class="text-purple-600 block px-3 py-2 rounded-md text-base font-medium bg-purple-50">Accueil</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Événements</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Activités</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Ressources</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Membres</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Cotisations</a>
+                <a href="/public/accueil.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+                <a href="/accounts/login.html"
+                    class="text-purple-600 block px-3 py-2 rounded-md text-base font-medium bg-purple-50">Événements</a>
+                <a href="/public/activités.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Activités</a>
+                <a href="/public/ressources.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Ressources</a>
+                <a href="/Users/membres/membres.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Membres</a>
+                <a href="/public/cotisations.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Cotisations</a>
                 <hr class="my-2">
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Profil</a>
-                <a href="#" class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Paramètres</a>
+                <a href="/accounts/profil.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Profil</a>
+                <a href="/public/paramètre.html"
+                    class="text-gray-700 hover:text-purple-600 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Paramètres</a>
             </div>
         </div>
     </nav>
@@ -443,7 +461,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-4xl font-bold mb-6">Prêt à Créer Votre Propre Activité ?</h2>
         <p class="text-xl mb-8 text-green-100 max-w-2xl mx-auto">
-          Vous êtes passionné et souhaitez partager votre savoir ? Proposez votre activité à la communauté CultureHub !
+          Vous êtes passionné et souhaitez partager votre savoir ? Proposez votre activité à la communauté EventSpace !
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-green-50 transform hover:scale-105 transition-all duration-300 shadow-lg">
@@ -462,7 +480,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-2xl font-bold text-purple-400 mb-4">CultureHub</h3>
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">EventSpace</h3>
                     <p class="text-gray-300">Votre plateforme dédiée à la découverte et au partage culturel.</p>
                 </div>
                 <div>
@@ -492,7 +510,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 CultureHub. Tous droits réservés.</p>
+                <p>&copy; 2024 EventSpace. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
