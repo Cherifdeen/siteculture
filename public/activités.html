@@ -116,11 +116,8 @@
           nourriront votre passion.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-green-50 transform hover:scale-105 transition-all duration-300 shadow-lg">
-            Découvrir les Ateliers
-          </button>
-          <button
+
+          <button onclick="openCreateModal()"
             class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transform hover:scale-105 transition-all duration-300">
             Créer une Activité
           </button>
@@ -136,25 +133,21 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-wrap items-center justify-between gap-4">
           <div class="flex flex-wrap gap-3">
-            <button
-              class="bg-purple-600 text-white px-6 py-2 rounded-full font-medium hover:bg-green-700 transition-colors">
+            <button onclick="filterActivities('tous')"
+              class="filter-btn bg-purple-600 text-white px-6 py-2 rounded-full font-medium hover:bg-green-700 transition-colors">
               Tous
             </button>
-            <button
-              class="bg-gray-100 text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors">
+            <button onclick="filterActivities('ateliers')"
+              class="filter-btn bg-gray-100 text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors">
               Ateliers
             </button>
-            <button
-              class="bg-gray-100 text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors">
+            <button onclick="filterActivities('masterclass')"
+              class="filter-btn bg-gray-100 text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors">
               Masterclass
             </button>
-            <button
-              class="bg-gray-100 text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors">
+            <button onclick="filterActivities('formations')"
+              class="filter-btn bg-gray-100 text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors">
               Formations
-            </button>
-            <button
-              class="bg-gray-100 text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-green-100 hover:text-green-700 transition-colors">
-              Rencontres
             </button>
           </div>
           <div class="flex items-center gap-4">
@@ -179,7 +172,7 @@
     </section>
 
     <!-- Featured Activities Section -->
-    <section class="py-20 bg-gray-50">
+    <section id="activites-section" class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold text-gray-900 mb-4">Activités à la Une</h2>
@@ -429,6 +422,393 @@
         </div>
       </div>
     </section>
+    <!-- Masterclass Section -->
+    <section id="masterclass-section" class="py-20 bg-white" style="display: none;">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Masterclass Exclusives</h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Perfectionnez vos compétences avec nos experts reconnus
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Masterclass Card 1 -->
+          <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group">
+            <div class="h-48 bg-gradient-to-r from-indigo-400 to-blue-400 relative overflow-hidden">
+              <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="bg-indigo-600 px-3 py-1 rounded-full text-sm font-semibold text-white">Masterclass</span>
+                <span class="bg-red-500 px-3 py-1 rounded-full text-sm font-semibold text-white">Nouveau</span>
+              </div>
+              <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+                <span class="text-sm font-bold text-gray-800">6h</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-orange-600 text-sm font-semibold">⭐⭐ Intermédiaire</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 text-sm">8 places</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Écriture Créative Avancée</h3>
+              <p class="text-gray-600 mb-4">Perfectionnez votre style littéraire avec des techniques narratives modernes
+                et des exercices pratiques intensifs.</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                  <div>📅 Dimanche 23 Juin</div>
+                  <div>📍 Bibliothèque Centrale</div>
+                  <div>👩‍💼 Sophie Martin</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-600">89€</div>
+                <button
+                  class="bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition-colors font-medium">
+                  Réserver
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masterclass Card 2 -->
+          <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group">
+            <div class="h-48 bg-gradient-to-r from-cyan-400 to-blue-400 relative overflow-hidden">
+              <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="bg-cyan-600 px-3 py-1 rounded-full text-sm font-semibold text-white">Masterclass</span>
+                <span class="bg-yellow-500 px-3 py-1 rounded-full text-sm font-semibold text-white">Populaire</span>
+              </div>
+              <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+                <span class="text-sm font-bold text-gray-800">5h</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-green-600 text-sm font-semibold">⭐ Débutant</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 text-sm">20 places</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Photographie de Rue</h3>
+              <p class="text-gray-600 mb-4">Maîtrisez l'art de capturer la vie urbaine avec des techniques
+                professionnelles et un œil artistique.</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                  <div>📅 Samedi 29 Juin</div>
+                  <div>📍 Centre-ville</div>
+                  <div>📸 Marc Léonard</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-600">75€</div>
+                <button
+                  class="bg-cyan-600 text-white px-6 py-2 rounded-full hover:bg-cyan-700 transition-colors font-medium">
+                  Capturer
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masterclass Card 3 -->
+          <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group">
+            <div class="h-48 bg-gradient-to-r from-violet-400 to-purple-400 relative overflow-hidden">
+              <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="bg-violet-600 px-3 py-1 rounded-full text-sm font-semibold text-white">Masterclass</span>
+              </div>
+              <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+                <span class="text-sm font-bold text-gray-800">4h</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-orange-600 text-sm font-semibold">⭐⭐ Intermédiaire</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 text-sm">12 places</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Composition Musicale</h3>
+              <p class="text-gray-600 mb-4">Apprenez les secrets de la composition avec un compositeur professionnel et
+                créez vos propres mélodies.</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                  <div>📅 Lundi 1er Juillet</div>
+                  <div>📍 Studio d'Enregistrement</div>
+                  <div>🎼 Antoine Dubois</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-600">95€</div>
+                <button
+                  class="bg-violet-600 text-white px-6 py-2 rounded-full hover:bg-violet-700 transition-colors font-medium">
+                  Composer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </section>
+    <!-- Formations Section -->
+    <section id="formations-section" class="py-20 bg-gray-50" style="display: none;">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Formations Professionnelles</h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Développez vos compétences avec nos formations certifiantes
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Formation Card 1 -->
+          <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group">
+            <div class="h-48 bg-gradient-to-r from-green-400 to-teal-400 relative overflow-hidden">
+              <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="bg-green-600 px-3 py-1 rounded-full text-sm font-semibold text-white">Formation</span>
+                <span class="bg-orange-500 px-3 py-1 rounded-full text-sm font-semibold text-white">Certifiante</span>
+              </div>
+              <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+                <span class="text-sm font-bold text-gray-800">2 jours</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-red-600 text-sm font-semibold">⭐⭐⭐ Avancé</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 text-sm">12 places</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Formation Critique d'Art</h3>
+              <p class="text-gray-600 mb-4">Développez votre regard critique et apprenez les méthodes d'analyse des
+                œuvres d'art contemporain.</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                  <div>📅 25-26 Juin</div>
+                  <div>📍 Musée d'Art Moderne</div>
+                  <div>👨‍🎓 Dr. Jean Rousseau</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-600">150€</div>
+                <button
+                  class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors font-medium">
+                  Participer
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formation Card 2 -->
+          <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group">
+            <div class="h-48 bg-gradient-to-r from-blue-400 to-indigo-400 relative overflow-hidden">
+              <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="bg-blue-600 px-3 py-1 rounded-full text-sm font-semibold text-white">Formation</span>
+              </div>
+              <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+                <span class="text-sm font-bold text-gray-800">3 jours</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-orange-600 text-sm font-semibold">⭐⭐ Intermédiaire</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 text-sm">16 places</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Gestion d'Événements Culturels</h3>
+              <p class="text-gray-600 mb-4">Maîtrisez l'organisation d'événements culturels de A à Z avec des
+                professionnels du secteur.</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                  <div>📅 2-4 Juillet</div>
+                  <div>📍 Centre de Formation</div>
+                  <div>👔 Marie Legrand</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-600">280€</div>
+                <button
+                  class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors font-medium">
+                  S'inscrire
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formation Card 3 -->
+          <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group">
+            <div class="h-48 bg-gradient-to-r from-red-400 to-pink-400 relative overflow-hidden">
+              <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="bg-red-600 px-3 py-1 rounded-full text-sm font-semibold text-white">Formation</span>
+                <span class="bg-yellow-500 px-3 py-1 rounded-full text-sm font-semibold text-white">Populaire</span>
+              </div>
+              <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+                <span class="text-sm font-bold text-gray-800">5 jours</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-green-600 text-sm font-semibold">⭐ Débutant</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 text-sm">20 places</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Animation Culturelle</h3>
+              <p class="text-gray-600 mb-4">Formation complète pour devenir animateur culturel : techniques d'animation,
+                gestion de groupes, projet culturel.</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                  <div>📅 8-12 Juillet</div>
+                  <div>📍 Maison des Associations</div>
+                  <div>🎭 Paul Moreau</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-600">450€</div>
+                <button
+                  class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition-colors font-medium">
+                  Rejoindre
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Ateliers Section -->
+    <section id="ateliers-section" class="py-20 bg-white" style="display: none;">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Ateliers Créatifs</h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Explorez votre créativité dans un environnement convivial et stimulant
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Atelier Card 1 -->
+          <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group">
+            <div class="h-48 bg-gradient-to-r from-purple-400 to-pink-400 relative overflow-hidden">
+              <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="bg-purple-600 px-3 py-1 rounded-full text-sm font-semibold text-white">Atelier</span>
+                <span class="bg-yellow-500 px-3 py-1 rounded-full text-sm font-semibold text-white">Populaire</span>
+              </div>
+              <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+                <span class="text-sm font-bold text-gray-800">3h</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-green-600 text-sm font-semibold">⭐ Débutant</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 text-sm">15 places</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Initiation à la Céramique</h3>
+              <p class="text-gray-600 mb-4">Découvrez l'art ancestral de la céramique et créez vos premières œuvres sous
+                les conseils d'un maître artisan.</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                  <div>📅 Samedi 22 Juin</div>
+                  <div>📍 Atelier des Arts</div>
+                  <div>👨‍🎨 Marie Dubois</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-600">45€</div>
+                <button
+                  class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition-colors font-medium">
+                  S'inscrire
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Atelier Card 2 -->
+          <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group">
+            <div class="h-48 bg-gradient-to-r from-pink-400 to-rose-400 relative overflow-hidden">
+              <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="bg-pink-600 px-3 py-1 rounded-full text-sm font-semibold text-white">Atelier</span>
+              </div>
+              <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+                <span class="text-sm font-bold text-gray-800">4h</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-orange-600 text-sm font-semibold">⭐⭐ Intermédiaire</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 text-sm">10 places</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Danse Contemporaine</h3>
+              <p class="text-gray-600 mb-4">Explorez l'expression corporelle à travers des mouvements fluides et
+                créatifs dans un cadre bienveillant.</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                  <div>📅 Vendredi 28 Juin</div>
+                  <div>📍 Studio de Danse</div>
+                  <div>💃 Elena Vasquez</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-600">60€</div>
+                <button
+                  class="bg-pink-600 text-white px-6 py-2 rounded-full hover:bg-pink-700 transition-colors font-medium">
+                  Danser
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Atelier Card 3 -->
+          <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group">
+            <div class="h-48 bg-gradient-to-r from-amber-400 to-yellow-400 relative overflow-hidden">
+              <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="bg-amber-600 px-3 py-1 rounded-full text-sm font-semibold text-white">Atelier</span>
+              </div>
+              <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
+                <span class="text-sm font-bold text-gray-800">2h30</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-green-600 text-sm font-semibold">⭐ Tous niveaux</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 text-sm">18 places</span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Peinture à l'Aquarelle</h3>
+              <p class="text-gray-600 mb-4">Initiez-vous aux techniques de l'aquarelle et créez des œuvres délicates
+                pleines de poésie.</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                  <div>📅 Dimanche 30 Juin</div>
+                  <div>📍 Atelier Couleurs</div>
+                  <div>🎨 Isabelle Martin</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-600">35€</div>
+                <button
+                  class="bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition-colors font-medium">
+                  Peindre
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Categories Section -->
     <section class="py-20 bg-white">
@@ -506,17 +886,236 @@
           Vous êtes passionné et souhaitez partager votre savoir ? Proposez votre activité à la communauté EventSpace !
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
+          <button onclick="openProposeModal()"
             class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-green-50 transform hover:scale-105 transition-all duration-300 shadow-lg">
             Proposer une Activité
           </button>
-          <button
-            class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transform hover:scale-105 transition-all duration-300">
-            En Savoir Plus
-          </button>
         </div>
       </div>
-    </section>
+      <!-- Modal Créer une Activité -->
+      <div id="create-activity-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-bold text-gray-900">Créer une Nouvelle Activité</h2>
+              <button onclick="closeCreateModal()" class="text-gray-400 hover:text-gray-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+
+            <form class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Titre de l'activité</label>
+                <input type="text"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Type d'activité</label>
+                <select
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                  <option>Atelier</option>
+                  <option>Masterclass</option>
+                  <option>Formation</option>
+                  <option>Rencontre</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <textarea rows="4"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"></textarea>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                  <input type="date"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Durée</label>
+                  <input type="text" placeholder="ex: 3h"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Lieu</label>
+                <input type="text"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Prix (€)</label>
+                  <input type="number"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Nombre de places</label>
+                  <input type="number"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                </div>
+              </div>
+
+              <div class="flex gap-4 pt-4">
+                <button type="button" onclick="closeCreateModal()"
+                  class="flex-1 border border-gray-300 text-gray-700 px-6 py-3 rounded-full hover:bg-gray-50 transition-colors">
+                  Annuler
+                </button>
+                <button type="submit"
+                  class="flex-1 bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition-colors">
+                  Créer l'activité
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Proposer une activité -->
+      <div id="propose-activity-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-bold text-gray-900">Proposer une Activité</h2>
+              <button onclick="closeProposeModal()" class="text-gray-400 hover:text-gray-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+
+            <form class="space-y-4" onsubmit="submitProposeActivity(event)">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Titre de l'activité *</label>
+                <input type="text" id="propose-title" required
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  placeholder="Ex: Atelier de sculpture sur bois">
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Type d'activité *</label>
+                <select id="propose-type" required
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                  <option value="">Choisir un type</option>
+                  <option value="atelier">Atelier</option>
+                  <option value="masterclass">Masterclass</option>
+                  <option value="formation">Formation</option>
+                  <option value="rencontre">Rencontre</option>
+                  <option value="conference">Conférence</option>
+                  <option value="spectacle">Spectacle</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Description *</label>
+                <textarea id="propose-description" required rows="4"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  placeholder="Décrivez votre activité, les objectifs, le déroulement..."></textarea>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Date proposée *</label>
+                  <input type="date" id="propose-date" required
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Durée *</label>
+                  <select id="propose-duration" required
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                    <option value="">Choisir une durée</option>
+                    <option value="1h">1 heure</option>
+                    <option value="1h30">1h30</option>
+                    <option value="2h">2 heures</option>
+                    <option value="2h30">2h30</option>
+                    <option value="3h">3 heures</option>
+                    <option value="4h">4 heures</option>
+                    <option value="demi-journee">Demi-journée</option>
+                    <option value="journee">Journée entière</option>
+                    <option value="2-jours">2 jours</option>
+                    <option value="3-jours">3 jours</option>
+                    <option value="plus">Plus de 3 jours</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Lieu souhaité</label>
+                <input type="text" id="propose-location"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  placeholder="Ex: Atelier personnel, salle à définir, en extérieur...">
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Prix proposé (€)</label>
+                  <input type="number" id="propose-price" min="0" step="5"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                    placeholder="0 pour gratuit">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Nombre de participants max</label>
+                  <input type="number" id="propose-participants" min="1" max="100"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                    placeholder="Ex: 15">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Niveau requis</label>
+                <select id="propose-level"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                  <option value="tous">Tous niveaux</option>
+                  <option value="debutant">Débutant</option>
+                  <option value="intermediaire">Intermédiaire</option>
+                  <option value="avance">Avancé</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Vos informations</label>
+                <div class="grid grid-cols-2 gap-4">
+                  <input type="text" id="propose-name" required placeholder="Votre nom *"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                  <input type="email" id="propose-email" required placeholder="Votre email *"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Votre expérience/qualifications</label>
+                <textarea id="propose-experience" rows="3"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  placeholder="Parlez-nous de votre parcours, vos compétences, votre expérience dans ce domaine..."></textarea>
+              </div>
+
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <p class="text-sm text-gray-600">
+                  <strong>Note :</strong> Votre proposition sera examinée par notre équipe. Nous vous recontacterons
+                  sous 48h pour valider les détails et planifier votre activité.
+                </p>
+              </div>
+
+              <div class="flex gap-4 pt-4">
+                <button type="button" onclick="closeProposeModal()"
+                  class="flex-1 border border-gray-300 text-gray-700 px-6 py-3 rounded-full hover:bg-gray-50 transition-colors">
+                  Annuler
+                </button>
+                <button type="submit"
+                  class="flex-1 bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition-colors">
+                  Envoyer ma proposition
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
   </main>
   <!-- Footer -->
@@ -607,6 +1206,108 @@
         mobileMenu.classList.add('hidden');
         menuIcon.classList.remove('hidden');
         closeIcon.classList.add('hidden');
+      }
+    });
+    // Fonction pour ouvrir la modale de création
+    function openCreateModal() {
+      document.getElementById('create-activity-modal').classList.remove('hidden');
+    }
+
+    // Fonction pour fermer la modale de création
+    function closeCreateModal() {
+      document.getElementById('create-activity-modal').classList.add('hidden');
+    }
+
+    // Fonction pour filtrer les activités
+    function filterActivities(type) {
+      // Retirer la classe active de tous les boutons
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      filterButtons.forEach(btn => {
+        btn.classList.remove('bg-purple-600', 'text-white');
+        btn.classList.add('bg-gray-100', 'text-gray-700');
+      });
+
+      // Ajouter la classe active au bouton cliqué
+      event.target.classList.remove('bg-gray-100', 'text-gray-700');
+      event.target.classList.add('bg-purple-600', 'text-white');
+
+      // Masquer toutes les sections
+      document.getElementById('activites-section').style.display = 'none';
+      document.getElementById('masterclass-section').style.display = 'none';
+      document.getElementById('formations-section').style.display = 'none';
+      document.getElementById('ateliers-section').style.display = 'none';
+
+      // Afficher la section correspondante
+      let targetSection;
+      switch (type) {
+        case 'ateliers':
+          targetSection = 'ateliers-section';
+          break;
+        case 'masterclass':
+          targetSection = 'masterclass-section';
+          break;
+        case 'formations':
+          targetSection = 'formations-section';
+          break;
+        default:
+          targetSection = 'activites-section';
+      }
+
+      document.getElementById(targetSection).style.display = 'block';
+
+      // Scroll vers la section
+      document.getElementById(targetSection).scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+    function openProposeModal() {
+      document.getElementById('propose-activity-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      // Définir la date minimale à aujourd'hui
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('propose-date').min = today;
+    }
+
+    function closeProposeModal() {
+      document.getElementById('propose-activity-modal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function submitProposeActivity(event) {
+      event.preventDefault();
+
+      // Récupérer les données du formulaire
+      const formData = {
+        title: document.getElementById('propose-title').value,
+        type: document.getElementById('propose-type').value,
+        description: document.getElementById('propose-description').value,
+        date: document.getElementById('propose-date').value,
+        duration: document.getElementById('propose-duration').value,
+        location: document.getElementById('propose-location').value,
+        price: document.getElementById('propose-price').value,
+        participants: document.getElementById('propose-participants').value,
+        level: document.getElementById('propose-level').value,
+        name: document.getElementById('propose-name').value,
+        email: document.getElementById('propose-email').value,
+        experience: document.getElementById('propose-experience').value
+      };
+
+      // Simulation d'envoi (remplacer par votre logique d'envoi)
+      console.log('Proposition d\'activité soumise:', formData);
+
+      // Afficher un message de confirmation
+      alert('Votre proposition a été envoyée avec succès ! Nous vous recontacterons sous 48h.');
+
+      // Réinitialiser le formulaire et fermer la modale
+      event.target.reset();
+      closeProposeModal();
+    }
+
+    // Fermer la modale en cliquant en dehors
+    document.getElementById('propose-activity-modal').addEventListener('click', function (e) {
+      if (e.target === this) {
+        closeProposeModal();
       }
     });
   </script>
